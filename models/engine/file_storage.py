@@ -22,7 +22,11 @@ class FileStorage:
                       for k, v in FileStorage.__objects.items()}, fjson)
 
     def reload(self):
-        with open(FileStorage.__file_path, 'r', encoding='utf-8') as fjson:
-            items_ = json.load(fjson).items()
-            FileStorage.__objects.update(
-                {k: eval(v['__class__'])(**v) for k, v in items_})
+        try:
+            with open(FileStorage.__file_path, 'r', encoding='utf-8') as fjson:
+                items_ = json.load(fjson).items()
+                FileStorage.__objects.update(
+                    {k: eval(v['__class__'])(**v) for k, v in items_})
+
+        except FileNotFoundError:
+            pass
