@@ -2,9 +2,10 @@
 """Modules documentation"""
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import json
 import re
-import models
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -33,35 +34,44 @@ entered."""
         pass
 
     def do_create(self, arg):
-        """ Creates a new instance of BaseModel, saves it (to the JSON file)
+        """ Creates a new instance of Classes, saves it (to the JSON file)
 and prints the id"""
         m_list = arg.split()
         if len(m_list) < 1:
             print("** class name missing **")
             return
         class_name = m_list[0]
-        if class_name != "BaseModel":
+        if class_name not in {"BaseModel", "User"}:
             print("** class doesn't exist **")
             return
-        new_ins = BaseModel()
-        models.storage.new(new_ins)
-        models.storage.save()
+        new_ins = eval(m_list[0])()
+        print(type(new_ins.created_at))
+        new_ins.save()
         print(new_ins.id)
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the
 class name and id"""
-        flag = False
         if len(arg.split()) < 1:
             print("** class name missing **")
             return
-        if (arg.split()[0] != "BaseModel"):
+        if (arg.split()[0] not in  {"BaseModel", "User"}):
             print("** class doesn't exist **")
             return
         if len(arg.split()) < 2:
             print("** instance id missing **")
             return
-        with open(models.storage.__file_path, "r", encoding="utf8") as f:
+
+        storage.reload()
+
+        for k, v in storage.all().items():
+            if k == f"{arg.split()[0]}.{arg.split()[1]}":
+                print(v)
+                return
+
+        print("** no instance found **")
+
+        """ with open(models.storage.__file_path, "r", encoding="utf8") as f:
             for line in f:
                 match = re.search(r"\[(.*?)\]\s\((.*?)\)\s(.*?)$", line)
                 if match:
@@ -71,9 +81,7 @@ class name and id"""
                     if (class_name == arg.split()[0] and
                             the_id == arg.split()[1]):
                         print(line)
-                        flag = True
-        if not flag:
-            print("** no instance found **")
+                        flag = True"""
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id"""
