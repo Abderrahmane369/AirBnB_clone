@@ -31,7 +31,7 @@ class BaseModel:
     def __str__(self):
         """__str__ is a special method that provides a string representation
                 of an object"""
-        return ("[{}] ({}) {}".format(__class__.__name__,
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
 
     def save(self):
@@ -45,9 +45,9 @@ class BaseModel:
         of __dict__ of the instance"""
         _dict = self.__dict__
 
-        if 'created_at' in _dict:
+        if 'created_at' in _dict and type(_dict['created_at']) != str:
             _dict['created_at'] = _dict['created_at'].isoformat()
-        if 'updated_at' in _dict:
+        if 'updated_at' in _dict and type(_dict['updated_at']) != str:
             _dict['updated_at'] = _dict['updated_at'].isoformat()
 
         _dict.update({'__class__': self.__class__.__name__})
