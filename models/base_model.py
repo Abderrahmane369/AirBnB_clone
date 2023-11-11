@@ -45,9 +45,9 @@ class BaseModel:
         of __dict__ of the instance"""
         _dict = self.__dict__
 
-        if 'created_at' in _dict and type(_dict['created_at']) != str:
+        if 'created_at' in _dict and not isinstance(_dict['created_at'], str):
             _dict['created_at'] = _dict['created_at'].isoformat()
-        if 'updated_at' in _dict and type(_dict['updated_at']) != str:
+        if 'updated_at' in _dict and not isinstance(_dict['updated_at'], str):
             _dict['updated_at'] = _dict['updated_at'].isoformat()
 
         _dict.update({'__class__': self.__class__.__name__})
