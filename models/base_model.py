@@ -10,7 +10,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """__init__ method (The constructor)"""
-        """if len(kwargs) != 0:
+        if len(kwargs) != 0:
             self.__dict__.update(kwargs)
 
             if '__class__' in kwargs:
@@ -21,14 +21,7 @@ class BaseModel:
                     self.__dict__['created_at'])
             if 'updated_at' in self.__dict__:
                 self.__dict__['updated_at'] = datetime.fromisoformat(
-                    self.__dict__['updated_at'])"""
-        if kwargs:
-            for key, value in kwargs.items():
-                if key == 'created_at' or key == 'updated_at':
-                    value = datetime.fromisoformat(value)
-                setattr(self, key, value)
-                if '__class__' in kwargs:
-                    delattr(self, '__class__')
+                    self.__dict__['updated_at'])
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
