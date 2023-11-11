@@ -25,7 +25,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = self.created_at
+            self.updated_at = datetime.now()
         models.storage.new(self)
 
     def __str__(self):
@@ -45,11 +45,11 @@ class BaseModel:
         of __dict__ of the instance"""
         _dict = self.__dict__
 
-        if 'created_at' in _dict and not isinstance(_dict['created_at'], str):
+        if 'created_at' in _dict and type(_dict['created_at']) != str:
             _dict['created_at'] = _dict['created_at'].isoformat()
-        if 'updated_at' in _dict and not isinstance(_dict['updated_at'], str):
+        if 'updated_at' in _dict and type(_dict['updated_at']) != str:
             _dict['updated_at'] = _dict['updated_at'].isoformat()
 
-        _dict['__class__'] = self.__class__.__name__
+        _dict.update({'__class__': self.__class__.__name__})
 
         return _dict
