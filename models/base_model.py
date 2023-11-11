@@ -51,7 +51,7 @@ class BaseModel:
             _dict['updated_at'] = _dict['updated_at'].isoformat()
 
         _dict['__class__'] = self.__class__.__name__"""
-        obj_dict = self.__dict__.copy()_
+        obj_dict = self.__dict__.copy()
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         obj_dict['__class__'] = self.__class__.__name__
