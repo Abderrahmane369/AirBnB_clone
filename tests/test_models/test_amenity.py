@@ -7,5 +7,3 @@ from ...models.amenity import Amenity
 class TestUser(unittest.TestCase):
     """Testing..."""
     pass
-
-

@@ -7,5 +7,3 @@ from ...models.state import State
 class TestUser(unittest.TestCase):
     """Testing..."""
     pass
-
-

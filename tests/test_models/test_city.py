@@ -7,5 +7,3 @@ from ...models.city import City
 class TestUser(unittest.TestCase):
     """Testing..."""
     pass
-
-

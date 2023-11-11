@@ -7,4 +7,3 @@ from ... import console
 class TestConsole(unittest.TestCase):
     """Testing..."""
     pass
-

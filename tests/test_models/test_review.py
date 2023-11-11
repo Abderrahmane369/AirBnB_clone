@@ -7,5 +7,3 @@ from ...models.review import Review
 class TestUser(unittest.TestCase):
     """Testing..."""
     pass
-
-

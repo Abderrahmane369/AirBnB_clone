@@ -7,5 +7,3 @@ from ...models.place import Place
 class TestUser(unittest.TestCase):
     """Testing..."""
     pass
-
-
