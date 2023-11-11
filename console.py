@@ -108,6 +108,28 @@ class name and id"""
         else:
             print("** no instance found **")
 
+    def do_all(self, arg):
+        """Prints all string representation of all instances based or not on
+the class name."""
+        dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'City': City, 'State': State, 'Amenity': Amenity
+               }
+        storage.reload()
+        m_list = []
+        if (not arg):
+            for key, value in storage.all().items():
+                m_list.append(str(value))
+
+        if (len(arg.split()) == 1):
+            if (arg.split()[0] in dic):
+                for k, v in storage.all().items():
+                    if v.__class__.__name__ == arg.split()[0]:
+                        m_list.append(str(v))
+            else:
+                print("** class doesn't exist **")
+                return
+        print(m_list)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
