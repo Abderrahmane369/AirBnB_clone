@@ -6,9 +6,10 @@ from models import storage
 import os
 from models.base_model import BaseModel
 
+
 class TestFileStorage(unittest.TestCase):
     """Let's test"""
-    
+
     def tearDown(self):
         try:
             os.remove('file.json')
@@ -21,7 +22,7 @@ class TestFileStorage(unittest.TestCase):
         base.number = 111
 
         base.save()
-        
+
         storage.reload()
 
         abase = storage.all()[f"BaseModel.{base.id}"]
@@ -49,9 +50,12 @@ class TestFileStorage(unittest.TestCase):
 
         abase = storage.all()
 
-        self.assertEqual(abase[f"BaseModel.{base.id}"].to_dict(), base.to_dict())
-        self.assertEqual(abase[f"BaseModel.{base1.id}"].to_dict(), base1.to_dict())
-        self.assertEqual(abase[f"BaseModel.{base2.id}"].to_dict(), base2.to_dict())
+        self.assertEqual(abase[f"BaseModel.{base.id}"].to_dict(),
+                         base.to_dict())
+        self.assertEqual(abase[f"BaseModel.{base1.id}"].to_dict(),
+                         base1.to_dict())
+        self.assertEqual(abase[f"BaseModel.{base2.id}"].to_dict(),
+                         base2.to_dict())
 
     def test_fileNotFound(self):
         base = BaseModel()
@@ -61,4 +65,3 @@ class TestFileStorage(unittest.TestCase):
         abase = storage.all()
 
         self.assertEqual(abase, {})
-

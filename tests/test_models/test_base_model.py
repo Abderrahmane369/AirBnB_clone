@@ -9,19 +9,23 @@ import os
 
 class TestBaseModel(unittest.TestCase):
     """Tests begins..."""
-    
+
     def test_id(self):
         base = BaseModel()
+        regexp = r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-'
+        regexp += '[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
         self.assertEqual(type(base.id), str)
-        self.assertRegex(base.id, r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
+        self.assertRegex(base.id, regexp)
 
     def test_created_updated_at(self):
         base = BaseModel()
         self.assertEqual(type(base.created_at), datetime.datetime)
         self.assertEqual(type(base.updated_at), datetime.datetime)
 
-        self.assertRegex(base.created_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
-        self.assertRegex(base.updated_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
+        self.assertRegex(base.created_at.isoformat(),
+                         r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
+        self.assertRegex(base.updated_at.isoformat(),
+                         r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
 
     def test_str(self):
         base = BaseModel()
@@ -38,25 +42,32 @@ class TestBaseModel(unittest.TestCase):
 
             printed_output = buffer.getvalue().strip()
 
-        self.assertEqual(printed_output, f"[BaseModel] ({base.id}) {base.__dict__}")
+        self.assertEqual(
+            printed_output, f"[BaseModel] ({base.id}) {base.__dict__}")
 
     def test_save(self):
         base = BaseModel()
 
         base.save()
 
-        self.assertRegex(base.updated_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
+        self.assertRegex(base.updated_at.isoformat(),
+                         r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
 
     def test_to_dcit(self):
         base = BaseModel()
         base.name = "AOAOAO"
         base.my_number = 23
 
-        base_ = {'my_number': 23, 'name': 'AOAOAO', '__class__': 'BaseModel', 'updated_at': base.updated_at.isoformat(), 'id': base.id, 'created_at': base.created_at.isoformat()}
+        base_ = {'my_number': 23, 'name': 'AOAOAO', '__class__': 'BaseModel',
+                 'updated_at': base.updated_at.isoformat(), 'id': base.id,
+                 'created_at': base.created_at.isoformat()}
         self.assertEqual(base.to_dict(), base_)
 
     def test_kwargs_args(self):
-        dd = {'my_number': 23, 'name': 'AOAOAO', 'updated_at': datetime.datetime.now().isoformat(), 'id': '56d43177-cc5f-4d6c-a0c1-e167f8c27337', 'created_at': datetime.datetime.now().isoformat()}
+        dd = {'my_number': 23, 'name': 'AOAOAO',
+              'updated_at': datetime.datetime.now().isoformat(
+              ), 'id': '56d43177-cc5f-4d6c-a0c1-e167f8c27337',
+              'created_at': datetime.datetime.now().isoformat()}
 
         base = BaseModel(**dd)
 
@@ -70,13 +81,15 @@ class TestBaseModel(unittest.TestCase):
         my_model.name = "My_First_Model"
         my_model.my_number = 89
 
-        self.assertRegex(my_model.id, r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
-        self.assertRegex(my_model.created_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
-        self.assertRegex(my_model.updated_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
+        regexp = r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-'
+        regexp += '[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+        self.assertRegex(my_model.id, regexp)
+        self.assertRegex(my_model.created_at.isoformat(),
+                         r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
+        self.assertRegex(my_model.updated_at.isoformat(),
+                         r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
 
     def test_save_reload_base_model(self):
         base = BaseModel()
         base.name = 'name'
         base.number = 1234
-
-

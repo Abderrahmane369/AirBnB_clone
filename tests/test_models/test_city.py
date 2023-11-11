@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Modules"""
 import unittest
-from ...models.city import City
+from models.city import City
 
 
 class TestUser(unittest.TestCase):
