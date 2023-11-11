@@ -50,6 +50,6 @@ class BaseModel:
         if 'updated_at' in _dict and not isinstance(_dict['updated_at'], str):
             _dict['updated_at'] = _dict['updated_at'].isoformat()
 
-        _dict.update({'__class__': self.__class__.__name__})
+        _dict['__class__'] = self.__class__.__name__
 
         return _dict
