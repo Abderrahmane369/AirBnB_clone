@@ -15,7 +15,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """class HBNBCommand documentation"""
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -86,28 +86,26 @@ class name and id"""
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id"""
-        flag = False
+        Classes = {
+            'BaseModel': BaseModel, 'User': User, 'Place': Place,
+            'City': City, 'State': State, 'Amenity': Amenity
+        }
         if (len(arg.split()) < 1):
             print("** class name missing **")
             return
-        if (arg.split()[0] != "BaseModel"):
+        if (arg.split()[0] not in Classes.keys()):
             print("** class doesn't exist **")
             return
         if (len(arg.split()) < 2):
             print("** instance id missing **")
             return
-        with open(storage.__file_path, "r+", encoding="utf8") as f:
-            for line in f:
-                match = re.search(r"\[(.*?)\]\s\((.*?)\)\s(.*?)$", line)
-                if match:
-                    class_name = match.group(1)
-                    the_id = match.group(2)
-                    the_dict = match.group(3)
-                    if (class_name == arg.split()[0] and
-                            the_id == arg.split()[1]):
-                        del line
-                        flag = True
-        if not flag:
+        storage.reload()
+        key_to_del = "{}.{}".format(arg.split()[0], arg.split()[1])
+
+        if key_to_del in storage.all():
+            del storage.all()[key_to_del]
+            storage.save()
+        else:
             print("** no instance found **")
 
 
