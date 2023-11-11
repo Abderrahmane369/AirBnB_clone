@@ -1,12 +1,15 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 """Modules"""
 import unittest
 from models.base_model import BaseModel
 from io import StringIO
 import datetime
+import os
+
 
 class TestBaseModel(unittest.TestCase):
     """Tests begins..."""
+    
     def test_id(self):
         base = BaseModel()
         self.assertEqual(type(base.id), str)
@@ -70,3 +73,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertRegex(my_model.id, r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
         self.assertRegex(my_model.created_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
         self.assertRegex(my_model.updated_at.isoformat(), r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$')
+
+    def test_save_reload_base_model(self):
+        base = BaseModel()
+        base.name = 'name'
+        base.number = 1234
+
+
