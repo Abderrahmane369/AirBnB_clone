@@ -58,5 +58,7 @@ class TestFileStorage(unittest.TestCase):
         base.name = 'A'
         base.number = 1
 
-    
+        abase = storage.all()
+
+        self.assertEqual(abase, {})
 
