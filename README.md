@@ -10,7 +10,7 @@ extra space with those seeking a place to stay.
 ## command interpreter
 
 ### How To Use It?
-Start by running `./console.py` and then run these commands :
+Start by running `./console.py` and then use these commands :
 
 create: Creates a new instance of BaseModel, saves it (to the JSON file) and
 prints the id
