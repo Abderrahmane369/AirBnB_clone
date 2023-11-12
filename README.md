@@ -1,4 +1,4 @@
-# AirBnB_clone Project
+# /AirBnB_clone Project
 An ALX SE clone project of AirBnB Web Application.
 Airbnb is an online marketplace and hospitality service that enables people to
 lease or rent short-term lodging, including vacation rentals, apartment rentals,
