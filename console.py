@@ -20,13 +20,12 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, arg):
         """Hook method executed just before the command is processed."""
-        if re.search(".+.all\(\)", arg) or arg == ".all()":
-            toClasses = {
-                'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
-            }
 
+        if re.search(".+.all\(\)", arg) or arg == ".all()":
             return f"all {arg[:-6]}"
+
+        elif re.search(".+.count\(\)", arg) or arg == ".count()":
+            return f"count {arg[:-8]}"
 
         return arg
 
@@ -143,6 +142,28 @@ the class name."""
                 print("** class doesn't exist **")
                 return
         print(m_list)
+
+    def do_count(self, arg):
+        dic = {
+            'BaseModel': BaseModel, 'User': User, 'Place': Place,
+            'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
+        }
+        storage.reload()
+        m_list = []
+        if (not arg):
+            for key, value in storage.all().items():
+                m_list.append(str(value))
+
+        if (len(arg.split()) == 1):
+            if (arg.split()[0] in dic):
+                for k, v in storage.all().items():
+                    if v.__class__.__name__ == arg.split()[0]:
+                        m_list.append(str(v))
+            else:
+                print("** class doesn't exist **")
+                return
+
+        print(len(m_list))
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding
