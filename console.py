@@ -30,6 +30,9 @@ class HBNBCommand(cmd.Cmd):
         elif re.search(".+.show\(.*\)", arg):
             return f"show {arg[:arg.find('.show')]}" +" "+ arg[arg.find('\"')+1:arg.rfind('\"')]
 
+        elif re.search(".+.destroy\(.*\)", arg):
+            return f"destroy {arg[:arg.find('.destroy')]}" +" "+ arg[arg.find('\"')+1:arg.rfind('\"')]
+
         return arg
 
     def do_quit(self, arg):
