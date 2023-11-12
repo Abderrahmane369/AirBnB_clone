@@ -21,19 +21,19 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, arg):
         """Hook method executed just before the command is processed."""
 
-        if re.search(".+.all\(\)", arg) or arg == ".all()":
+        if re.search(".+.all()", arg) or arg == ".all()":
             return f"all {arg[:-6]}"
 
-        elif re.search(".+.count\(\)", arg) or arg == ".count()":
+        elif re.search(".+.count()", arg) or arg == ".count()":
             return f"count {arg[:-8]}"
 
-        elif re.search(".+.show\(.*\)", arg):
+        elif re.search(".+.show(.*)", arg):
             return f"show {arg[:arg.find('.show')]}" + " " + arg[arg.find('\"')+1:arg.rfind('\"')]
 
-        elif re.search(".+.destroy\(.*\)", arg):
+        elif re.search(".+.destroy(.*)", arg):
             return f"destroy {arg[:arg.find('.destroy')]}" + " " + arg[arg.find('\"')+1:arg.rfind('\"')]
 
-        elif re.search(".+.update\(.*\)", arg):
+        elif re.search(".+.update(.*)", arg):
             return "update {} {} {} {}".format(arg[:arg.find('.update')],
                                                arg[arg.find(
                                                    '\"')+1:arg.find('\",')], arg[arg.find(' \"')+1:arg.rfind(',')],
