@@ -7,7 +7,7 @@ homestays, hostel beds, or hotel rooms. The platform allows property owners
 Airbnb operates on a peer-to-peer model, connecting individuals who have
 extra space with those seeking a place to stay.
 
-##command interpreter
+## command interpreter
 How To Use It?
 Start by running `./console.py` And then these commands :
 
