@@ -1,4 +1,4 @@
-# AirBnB_clone Project
+# **AirBnB_clone Project**
 An ALX SE clone project of AirBnB Web Application.
 Airbnb is an online marketplace and hospitality service that enables people to
 lease or rent short-term lodging, including vacation rentals, apartment rentals,
@@ -7,8 +7,9 @@ homestays, hostel beds, or hotel rooms. The platform allows property owners
 Airbnb operates on a peer-to-peer model, connecting individuals who have
 extra space with those seeking a place to stay.
 
-## command interpreter
-How To Use It?
+## **command interpreter**
+
+### How To Use It?
 Start by running `./console.py` And then these commands :
 
 create: Creates a new instance of BaseModel, saves it (to the JSON file) and
