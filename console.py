@@ -28,16 +28,19 @@ class HBNBCommand(cmd.Cmd):
             return f"count {arg[:-8]}"
 
         elif re.search(".+.show(.*)", arg):
-            return f"show {arg[:arg.find('.show')]}" + " " + arg[arg.find('\"')+1:arg.rfind('\"')]
+            _ = arg[arg.find('\"')+1:arg.rfind('\"')]
+            return f"show {arg[:arg.find('.show')]}" + " " + _
 
         elif re.search(".+.destroy(.*)", arg):
-            return f"destroy {arg[:arg.find('.destroy')]}" + " " + arg[arg.find('\"')+1:arg.rfind('\"')]
+            _ = arg[arg.find('\"')+1:arg.rfind('\"')]
+            return f"destroy {arg[:arg.find('.destroy')]}" + " " + _
 
         elif re.search(".+.update(.*)", arg):
-            return "update {} {} {} {}".format(arg[:arg.find('.update')],
-                                               arg[arg.find(
-                                                   '\"')+1:arg.find('\",')], arg[arg.find(' \"')+1:arg.rfind(',')],
-                                               arg[arg.rfind(' ')+1:arg.rfind(')')])
+            return "update {} {} {} {}".format(
+                arg[:arg.find('.update')],
+                arg[arg.find('\"')+1:arg.find('\",')],
+                arg[arg.find(' \"')+1:arg.rfind(',')],
+                arg[arg.rfind(' ')+1:arg.rfind(')')])
 
         return arg
 
