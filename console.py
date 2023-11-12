@@ -35,9 +35,9 @@ class HBNBCommand(cmd.Cmd):
 
         elif re.search(".+.update\(.*\)", arg):
             return "update {} {} {} {}".format(arg[:arg.find('.update')],
-                                            arg[arg.find(
-                                                '\"')+1:arg.find('\",')], arg[arg.find(' \"')+1:arg.rfind(',')],
-                                            arg[arg.rfind(' ')+1:arg.rfind(')')])
+                                               arg[arg.find(
+                                                   '\"')+1:arg.find('\",')], arg[arg.find(' \"')+1:arg.rfind(',')],
+                                               arg[arg.rfind(' ')+1:arg.rfind(')')])
 
         return arg
 
