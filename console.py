@@ -27,6 +27,9 @@ class HBNBCommand(cmd.Cmd):
         elif re.search(".+.count\(\)", arg) or arg == ".count()":
             return f"count {arg[:-8]}"
 
+        elif re.search(".+.show\(.*\)", arg):
+            return f"show {arg[:arg.find('.show')]}" +" "+ arg[arg.find('\"')+1:arg.rfind('\"')]
+
         return arg
 
     def do_quit(self, arg):
