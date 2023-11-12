@@ -130,6 +130,42 @@ the class name."""
                 return
         print(m_list)
 
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id by adding
+or updating attribute"""
+        dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'City': City, 'State': State, 'Amenity': Amenity
+               }
+        if (len(arg.split()) < 1):
+            print("** class name missing **")
+            return
+        if (arg.split()[0] not in dic.keys()):
+            print("** class doesn't exist **")
+            return
+        if (len(arg.split()) < 2):
+            print("** instance id missing **")
+            return
+        if (len(arg.split()) < 3):
+            print("** attribute name missing **")
+            return
+        storage.reload()
+        instances = storage.all()
+        key = "{}.{}".format(arg.split()[0], arg.split()[1])
+        if key not in instances:
+            print("** no instance found **")
+            return
+        if (len(arg.split()) < 4):
+            print("** value missing **")
+            return
+        instance = instances[key]
+        attribute_name = arg.split()[2]
+        attribute_value = arg.split()[3]
+        if not hasattr(instance, attribute_name):
+            setattr(instance, attribute_name, attribute_value)
+        setattr(instance, attribute_name,
+                type(getattr(instance, attribute_name))(attribute_value))
+        instance.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
