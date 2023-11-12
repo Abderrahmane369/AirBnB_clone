@@ -18,6 +18,18 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
+    def precmd(self, arg):
+        """Hook method executed just before the command is processed."""
+        if re.search(".+.all\(\)", arg) or arg == ".all()":
+            toClasses = {
+                'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
+            }
+
+            return f"all {arg[:-6]}"
+
+        return arg
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
