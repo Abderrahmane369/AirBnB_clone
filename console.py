@@ -7,6 +7,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.state import State
 from models.city import City
+from models.review import Review
 import json
 import re
 from models import storage
@@ -42,7 +43,7 @@ entered."""
 and prints the id"""
         toClasses = {
             'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'City': City, 'State': State, 'Amenity': Amenity
+            'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
         }
 
         m_list = arg.split()
@@ -62,7 +63,7 @@ and prints the id"""
 class name and id"""
         toClasses = {
             'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'City': City, 'State': State, 'Amenity': Amenity
+            'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
         }
 
         if len(arg.split()) < 1:
@@ -88,7 +89,7 @@ class name and id"""
         """ Deletes an instance based on the class name and id"""
         Classes = {
             'BaseModel': BaseModel, 'User': User, 'Place': Place,
-            'City': City, 'State': State, 'Amenity': Amenity
+            'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
         }
         if (len(arg.split()) < 1):
             print("** class name missing **")
@@ -111,9 +112,10 @@ class name and id"""
     def do_all(self, arg):
         """Prints all string representation of all instances based or not on
 the class name."""
-        dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'City': City, 'State': State, 'Amenity': Amenity
-               }
+        dic = {
+            'BaseModel': BaseModel, 'User': User, 'Place': Place,
+            'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
+        }
         storage.reload()
         m_list = []
         if (not arg):
@@ -133,9 +135,10 @@ the class name."""
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding
 or updating attribute"""
-        dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'City': City, 'State': State, 'Amenity': Amenity
-               }
+        dic = {
+            'BaseModel': BaseModel, 'User': User, 'Place': Place,
+            'City': City, 'State': State, 'Amenity': Amenity, 'Review': Review
+        }
         if (len(arg.split()) < 1):
             print("** class name missing **")
             return
