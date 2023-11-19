@@ -29,13 +29,14 @@
 .amenities {
     height: 100%;
     width: 25%;
-    margin-left: 60px;
 }
 
 .locations h3,
 .amenities h3 {
     font-weight: 600;
     margin-bottom: 0;
+    margin-left: 60px;
+
 }
 
 .locations h4,
@@ -43,8 +44,42 @@
     font-weight: 400;
     font-size: 14px;
     margin-top: 0;
+    margin-left: 60px;
+
 }
 
 .locations {
     border-right: 1px solid #dddddd;
+}
+
+.locations:hover .popover, .amenities:hover .popover{
+    display: block;
+}
+
+.popover {
+    background-color: #fafafa;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 30px;
+    list-style: none;
+    margin-left: 0;
+    display: none;
+}
+
+.popover h2 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.popover ul{
+    list-style: none;
+    padding-bottom: 15px;
+    padding-left: 30px;
+}
+
+.popover > li {
+    margin-top: 5px;
+    margin-left: 30px;
 }
