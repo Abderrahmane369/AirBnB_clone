@@ -1,0 +1,107 @@
+.places {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.places h1 {
+    float: left;
+    font-size: 30px;
+}
+
+.articles article {
+    width: 450px;
+    border: 1px solid #ff5a5f;
+    border-radius: 4px;
+    margin: 20px;
+}
+
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.articles article h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.price_by_night {
+    color: #ff5a5f;
+    border: 4px solid #ff5a5f;
+    border-radius: 50%;
+    min-width: 80px; /* 70px looks better than 60px */
+    height: 80px; /* 70px looks better than 60px */
+    font-size: 30px;
+    float: right;
+    text-align: center;
+    line-height: 80px;
+    display: block;
+    position: relative;
+    bottom: 70px;
+    right: 20px;
+}
+
+.information {
+    height: 80px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 55px;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px;
+    width: 350px;
+}
+
+.max_guest,
+.number_bathrooms,
+.number_rooms {
+    font-size: 15px;
+    font-weight: bold; /* It looks good */
+}
+
+.max_guest::before {
+    content: url("../images/hbnb_users.png");
+    width: 100px; /* 80px is better */
+    display: flex;
+    justify-content: center;
+}
+
+.number_rooms::before {
+    content: url("../images/hbnb_bedroom.png");
+    width: 100px; /* 80px is better */
+    display: flex;
+    justify-content: center;
+}
+
+.number_bathrooms::before {
+    content: url("../images/hbnb_bathroom.png");
+    width: 100px; /* 80px is better */
+    display: flex;
+    justify-content: center;
+}
+
+.user {
+    font-size: 20px;
+    display: flex;
+    margin-top: 25px;
+    margin-left: 38px;
+}
+
+.user::before {
+    content: "Owner";
+    font-weight: bold;
+}
+
+.description {
+    font-size: 20px;
+    display: flex;
+    padding: 38px;
+}
